@@ -26,7 +26,7 @@ export async function getStaticPaths() {
   const categories = await fetchAPI("/categories")
 
   return {
-    paths: categories.map((category) => ({
+    paths: categories.category.map((category) => ({
       params: {
         slug: category.slug,
       },
