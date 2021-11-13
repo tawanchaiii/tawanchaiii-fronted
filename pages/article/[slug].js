@@ -1,5 +1,5 @@
 import ReactMarkdown from "react-markdown"
-import React from 'react';
+import React from "react"
 import Moment from "react-moment"
 import { fetchAPI } from "../../lib/api"
 import Layout from "../../components/layout"
