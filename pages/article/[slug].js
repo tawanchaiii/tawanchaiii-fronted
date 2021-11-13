@@ -1,7 +1,7 @@
 import ReactMarkdown from "react-markdown"
 import React from "react"
 import Moment from "react-moment"
-import { fetchAPI } from "../../lib/api"
+import { fetchAPI, fetchAPI_URL } from "../../lib/api"
 import Layout from "../../components/layout"
 import NextImage from "../../components/image"
 import Seo from "../../components/seo"
@@ -57,8 +57,9 @@ const Article = ({ article, categories }) => {
 }
 
 export async function getStaticPaths() {
-  const xarticles = await fetchAPI("/articles")
-  const paths = xarticles.map((article) => ({
+  const res = await fetch(`https://tawanchaiii-backend.herokuapp.com/articles`)
+  const articles = await res.json()
+  const paths = articles.map((article) => ({
     params: { slug: article.slug },
   }))
   return { paths, fallback: false }

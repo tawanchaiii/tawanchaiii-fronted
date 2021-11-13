@@ -1,5 +1,5 @@
 import Articles from "../../components/articles"
-import { fetchAPI } from "../../lib/api"
+import { fetchAPI, fetchAPI_URL } from "../../lib/api"
 import Layout from "../../components/layout"
 import Seo from "../../components/seo"
 import React from "react"
@@ -23,8 +23,11 @@ const Category = ({ category, categories }) => {
 }
 
 export async function getStaticPaths() {
-  const xcategories = await fetchAPI("/categories")
-  const paths = xcategories.map((category) => ({
+  const res = await fetch(
+    `https://tawanchaiii-backend.herokuapp.com/categories`
+  )
+  const categories = await res.json()
+  const paths = categories.map((category) => ({
     params: { slug: category.slug },
   }))
   return { paths, fallback: false }
